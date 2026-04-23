@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитик данных | Power BI | Python | SQL</title>
+    <meta name="description" content="Аналитик данных с опытом работы с маркетплейсами, Power BI, Python, SQL(базовый уровень). Автоматизация отчетности и ETL-процессов.">
+    <meta name="keywords" content="аналитик данных, data analyst, power bi, python, sql, маркетплейсы, etl">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --text-light: #eaeaea;
+            --text-muted: #b0b0b0;
+            --border-color: #444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--highlight-color), #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--highlight-color);
+        }
+
+        /* Мобильное меню */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-light);
+            transition: 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 60px;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.15), transparent);
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--highlight-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--highlight-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--highlight-color);
+            color: var(--highlight-color);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--highlight-color);
+            color: white;
+        }
+
+        /* Секции */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            border-bottom: 3px solid var(--highlight-color);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* About */
+        #about {
+            background-color: var(--secondary-color);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: var(--highlight-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--primary-color);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--highlight-color);
+        }
+
+        .skill-category h4 {
+            color: var(--highlight-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .skill-category p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Skills & Tools */
+        #skills {
+            background-color: var(--primary-color);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: var(--highlight-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.2);
+        }
+
+        .tool-card h4 {
+            color: var(--highlight-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Portfolio */
+        #portfolio {
+            background-color: var(--secondary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--primary-color);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.2);
+            border-color: var(--highlight-color);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-color), var(--highlight-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--accent-color);
+            color: var(--text-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Contact */
+        #contact {
+            background-color: var(--primary-color);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            color: var(--highlight-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--text-light);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Анимация при загрузке */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav>
+        <div class="logo">📊 DataAnalyst</div>
+        <ul>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Превращаю хаос из данных<br>в <span>понятные дашборды</span></h1>
+            <p>BI & Data Analyst | Автоматизация ETL | Power BI | Python | SQL</p>
+            <div class="cta-buttons">
+                <a href="#portfolio" class="btn btn-primary">Смотреть проекты</a>
+                <a href="#contact" class="btn btn-secondary">Написать мне</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <h2>Обо мне</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Привет! Я <strong>аналитик данных</strong> с глубоким пониманием бизнеса и современными навыками в Data Science.</p>
+                
+                <p>Мой путь в работе с данными и финансами начался еще в <strong>2000 году</strong>. Это дало мне уникальное преимущество: я понимаю не просто IT, но и то, <strong>откуда в бизнесе берутся деньги</strong>.</p>
+
+                <p>Специализируюсь на:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
+                    <li>✓ Автоматизация сбора данных (API маркетплейсов: WB, Ozon)</li>
+                    <li>✓ Построение ETL-процессов на Python</li>
+                    <li>✓ Разработка BI-дашбордов (Power BI, DAX)</li>
+                    <li>✓ Анализ e-commerce метрик (Unit-экономика, ДРР, маржинальность)</li>
+                </ul>
+
+                <p>Мой девиз: <strong>«Ручной сбор отчетов должен быть исключен»</strong>. Я автоматизирую всё, что можно автоматизировать, и делаю это быстро.</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>🚀 Сбор & ETL</h4>
+                    <p>Python (Pandas, Requests), API, SQL(базовый уровень), MySQL, автоматизация пайплайнов</p>
+                </div>
+                <div class="skill-category">
+                    <h4>📊 BI & Визуализация</h4>
+                    <p>Power BI (DAX, Power Query), Looker Studio, визуализация метрик</p>
+                </div>
+                <div class="skill-category">
+                    <h4>📑 Google Workspace</h4>
+                    <p>Продвинутые Google Sheets (QUERY, массивы), Google Apps Script</p>
+                </div>
+                <div class="skill-category">
+                    <h4>💡 Бизнес-анализ</h4>
+                    <p>Unit-экономика, ДРР, ABC/XYZ-анализ, контроль маржи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <h2>Мой стек технологий</h2>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h4>Python</h4>
+                <p>Pandas, Requests, автоматизация</p>
+            </div>
+            <div class="tool-card">
+                <h4>SQL</h4>
+                <p>MySQL, создание запросов</p>
+            </div>
+            <div class="tool-card">
+                <h4>Power BI</h4>
+                <p>DAX, Power Query, дашборды</p>
+            </div>
+            <div class="tool-card">
+                <h4>Google Sheets</h4>
+                <p>QUERY, массивы, Apps Script</p>
+            </div>
+            <div class="tool-card">
+                <h4>API Integration</h4>
+                <p>Wildberries, Ozon, парсинг данных</p>
+            </div>
+            <div class="tool-card">
+                <h4>Git & GitHub</h4>
+                <p>Контроль версий, портфолио</p>
+            </div>
+            <div class="tool-card">
+                <h4>Looker Studio</h4>
+                <p>Интерактивные отчеты</p>
+            </div>
+            <div class="tool-card">
+                <h4>Excel</h4>
+                <p>Сводные таблицы, ВПР, макросы</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio">
+        <h2>Портфолио & Проекты</h2>
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-image">📦</div>
+                <div class="project-content">
+                    <h3>Автоматизация сбора данных WB & Ozon</h3>
+                    <p>Построила ETL-процесс на Python (Pandas) для автоматической выгрузки данных из API маркетплейсов. Сократила время подготовки отчетов на 30%.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">API</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">ETL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3>BI-дашборд в Power BI (Unit-экономика)</h3>
+                    <p>Разработала управленческий дашборд с анализом Unit-экономики, контролем ДРР и маржинальности по артикулам. Меры написаны на DAX.</p>
+                    <div class="project-tags">
+                        <span class="tag">Power BI</span>
+                        <span class="tag">DAX</span>
+                        <span class="tag">Unit-экономика</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">📈</div>
+                <div class="project-content">
+                    <h3>Аналитическая модель в Google Sheets</h3>
+                    <p>Создала продвинутую модель с формулами QUERY, ABC-анализом и автоматическими оповещениями о критических метриках.</p>
+                    <div class="project-tags">
+                        <span class="tag">Google Sheets</span>
+                        <span class="tag">QUERY</span>
+                        <span class="tag">Apps Script</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🔍</div>
+                <div class="project-content">
+                    <h3>Система контроля качества данных</h3>
+                    <p>Внедрила автоматические проверки целостности данных (Python). Снизила ошибки в отчетности на 95%.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Data Quality</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">💾</div>
+                <div class="project-content">
+                    <h3>Интеграция данных из разных источников</h3>
+                    <p>Объединила данные из маркетплейцов, CRM и внутренних БД в единую модель для Power BI и Google Sheets.</p>
+                    <div class="project-tags">
+                        <span class="tag">ETL</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Data Integration</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">⚙️</div>
+                <div class="project-content">
+                    <h3>Автоматизация рутины (Google Apps Script)</h3>
+                    <p>Написала скрипты для автоматизации отправки отчетов, расчета KPI и оповещений в Telegram. Экономит 5+ часов в неделю.</p>
+                    <div class="project-tags">
+                        <span class="tag">Apps Script</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Давайте работать вместе</h2>
+        <div class="contact-content">
+            <p>Если вам нужен аналитик, который разберется в ваших данных, построит дашборды и автоматизирует всю рутину — я здесь.</p>
+            
+            <div class="contact-links">
+                <a href="https://t.me/milicaci" class="contact-link" target="_blank">📱 Telegram</a>
+                <a href="mailto:your.email@example.com" class="contact-link">✉️ Email</a>
+                <a href="https://hh.ru" class="contact-link" target="_blank">💼 HH.ru</a>
+                <a href="https://github.com" class="contact-link" target="_blank">🐙 GitHub</a>
+            </div>
+
+            <a href="https://t.me/milicaci" class="btn btn-primary" target="_blank">Написать в Telegram</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Аналитик данных. Все права защищены. | Сайт создан с ❤️</p>
+    </footer>
+
+    <script>
+        // Меню-гамбургер для мобильных
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+
+        menuToggle?.addEventListener('click', () => {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.style.display = 'none';
+            });
+        });
+
+        // Smooth scroll для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target?.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
