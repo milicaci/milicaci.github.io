@@ -24,6 +24,7 @@ dialog::backdrop{background:rgba(48,32,25,.65)}
 .dialog-close{padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text);cursor:pointer}
 .dialog-body{padding:28px}.dialog-body h2{font-size:28px}.dialog-body p{color:var(--muted)}.dialog-body ul{padding-left:20px;color:var(--muted);margin:16px 0}.dialog-body li{margin-bottom:8px}
 body.modal-open{overflow:hidden}
+.dashboard-hub{max-width:850px}.dashboard-hub .project-link{padding:18px 0}.dialog-body .project-image{height:auto;min-height:160px;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:18px 0}.dialog-body .project-image img{height:auto;max-height:480px}
 
 </style>
 </head>
@@ -47,129 +48,71 @@ body.modal-open{overflow:hidden}
 <section id="skills"><p class="eyebrow">Рабочие инструменты</p><h2>Технологии и методы</h2><div class="tools">
 <div class="tool"><h3>Power BI</h3><p>Power Query, DAX, модели данных и интерактивные отчёты.</p></div><div class="tool"><h3>Python</h3><p>Pandas, Requests, обработка файлов и работа с API.</p></div><div class="tool"><h3>SQL</h3><p>Базовые SQL-запросы: фильтрация, объединение таблиц и агрегация данных в PostgreSQL.</p></div><div class="tool"><h3>Google Sheets и Excel</h3><p>Сводные таблицы, QUERY, формулы массивов и Apps Script.</p></div>
 </div></section>
-<section id="portfolio"><p class="eyebrow">Примеры работы</p><h2>Портфолио</h2><p class="section-intro">Проекты по подготовке данных, разработке дашбордов и автоматизации отчётности. В карточках — задачи, инструменты и материалы для просмотра.</p>
-<div class="portfolio-grid">
-<article class="project-card"><div class="project-image"><img src="images/Screenshot_6.png" alt="Пример отчётности по маркетплейсам" loading="lazy"><span class="fallback">Данные WB и Ozon</span></div><div class="project-content"><span class="project-type">Аналитика маркетплейсов</span><h3>Сбор и обработка данных WB и Ozon</h3><p>Подготовка данных разных кабинетов для регулярной отчётности по продажам, начислениям и расходам.</p><details><summary>Задача и моя работа</summary><ul><li>Выгрузка данных через API и обработка отчётных файлов.</li><li>Приведение полей и типов данных к единому формату.</li><li>Объединение данных кабинетов и проверка дублей.</li><li>Подготовка таблиц для дальнейшего анализа.</li></ul><p><strong>Результат:</strong> единая основа для отчётов и меньше ручных операций при подготовке данных.</p></details><div class="video-links"><a href="./marketplace_analytics_portfolio.pdf" target="_blank" rel="noopener noreferrer">Открыть описание проекта — PDF ↗</a></div><div class="project-tags"><span class="tag">Python</span><span class="tag">API</span><span class="tag">Pandas</span><span class="tag">ETL</span></div></div></article>
-<article class="project-card">
-<div class="project-image placeholder">Дашборды Power BI</div>
-<div class="project-content"><span class="project-type">Интерактивные отчёты</span>
-<h3>Дашборды Power BI</h3>
-<p>Выберите проект, чтобы посмотреть задачу, мой вклад и доступные материалы демонстрации.</p>
-<details open><summary>Перечень проектов</summary>
-<ul class="project-list">
-<li><button type="button" class="project-link" data-dialog="sales-project">Анализ продаж и прибыльности <span aria-hidden="true">↗</span></button></li>
-<li><button type="button" class="project-link" data-dialog="product-project">Дашборд по товару <span aria-hidden="true">↗</span></button></li>
+<section id="portfolio"><p class="eyebrow">Примеры работы</p><h2>Портфолио</h2><p class="section-intro">Четыре проекта: анализ продаж, визуализация поддержки, финансовая аналитика WB и командная аналитика маркетплейсов. Выберите название, чтобы открыть подробную карточку.</p>
+<article class="project-card dashboard-hub"><div class="project-content"><span class="project-type">Интерактивные отчёты</span><h3>Дашборды Power BI</h3><p>В каждой карточке — задача, данные, мой вклад и материалы проекта.</p><ul class="project-list"><li><button type="button" class="project-link" data-dialog="sales-project">Анализ продаж и прибыльности — Power BI <span aria-hidden="true">↗</span></button></li>
+<li><button type="button" class="project-link" data-dialog="product-project">Визуализация показателей клиентской поддержки — Power BI <span aria-hidden="true">↗</span></button></li>
 <li><button type="button" class="project-link" data-dialog="wb-finance-project">Финансовая аналитика Wildberries <span aria-hidden="true">↗</span></button></li>
-</ul></details>
-<div class="project-tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span></div>
-</div></article>
-
-<article class="project-card"><div class="project-image"><img src="images/abs_service.png" alt="Аналитическая модель Google Sheets" loading="lazy"><span class="fallback">Google Sheets</span></div><div class="project-content"><span class="project-type">Аналитическая модель</span><h3>Анализ товаров в Google Sheets</h3><p>Командный проект по анализу товаров маркетплейсов. Мой вклад — сбор и подготовка данных, выполнение ABC-анализа.</p><details><summary>Подробнее о проекте</summary><p>Мой вклад — сбор и подготовка данных финансовых отчётов WB и Ozon на Python, а также выполнение ABC-анализа. Остальную часть аналитической модели разработал другой аналитик.</p></details><div class="video-links"><a href="https://docs.google.com/spreadsheets/d/1FaQ2iyetW-Ephp1ba9PJHem5Vy-yUUIHwREtUzbq2Zk/edit?gid=2137744191#gid=2137744191" target="_blank" rel="noopener noreferrer">Открыть пример таблицы ↗</a></div><div class="project-tags"><span class="tag">Google Sheets</span><span class="tag">ABC-анализ</span><span class="tag">Python</span></div></div></article>
-<article class="project-card"><div class="project-image placeholder">Проверка данных</div><div class="project-content"><span class="project-type">Обработка данных</span><h3>Контроль корректности отчётности</h3><p>Проверки перед загрузкой данных в аналитическую модель: дубли, типы полей, новые категории операций и расхождения в расчётах.</p><details><summary>Что входит в работу</summary><ul><li>Проверка повторных строк и ключевых идентификаторов.</li><li>Сохранение связи данных с исходным файлом и кабинетом.</li><li>Выявление новых типов начислений для уточнения классификации.</li><li>Сверка показателей с исходными отчётами.</li></ul></details><div class="project-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Качество данных</span></div></div></article>
-<article class="project-card"><div class="project-image placeholder">Регулярные отчёты</div><div class="project-content"><span class="project-type">Автоматизация</span><h3>Обновление отчётов в Google Sheets</h3><p>Скрипты для загрузки заказов и остатков маркетплейсов, обновления текущих таблиц и сохранения истории по датам.</p><details><summary>Подробнее о работе</summary><ul><li>Получение данных по кабинетам через API.</li><li>Добавление даты и времени обновления.</li><li>Дозапись архивных данных и обновление текущих отчётов.</li><li>Обработка статусов и ошибок запросов.</li></ul></details><div class="project-tags"><span class="tag">Apps Script</span><span class="tag">JavaScript</span><span class="tag">API</span></div></div></article>
-<!-- Новые карточки разделов добавляйте выше этой строки. -->
-</div></section>
+<li><button type="button" class="project-link" data-dialog="marketplace-project">Продажи на маркетплейсах WB и Ozon — Power BI <span aria-hidden="true">↗</span></button></li>
+</ul></div></article></section>
 <section id="approach"><p class="eyebrow">Организация работы</p><h2>От задачи до отчёта</h2><ol class="work-steps"><li><h3>Уточняю задачу</h3><p>Кто использует отчёт, какие вопросы он должен закрывать и как определяются показатели.</p></li><li><h3>Проверяю данные</h3><p>Источники, состав полей, полнота и ограничения для расчётов.</p></li><li><h3>Разрабатываю отчёт</h3><p>Подготовка данных, модель, меры и визуализации с нужной детализацией.</p></li><li><h3>Сверяю результат</h3><p>Проверка итогов по источникам, уточнение расхождений и порядка обновления.</p></li></ol></section>
 <section id="contact" class="contact"><div><p class="eyebrow">Контакты</p><h2>Обсудим вашу задачу</h2><p>Рассматриваю предложения о работе в аналитике и задачи по разработке отчётности. Напишите, какие данные у вас есть и какой результат нужен.</p></div><div><a class="btn primary" href="https://t.me/milicaci" target="_blank" rel="noopener noreferrer">Написать в Telegram</a><div class="contact-links"><a href="https://hh.ru/resume/f7f3d21aff01e676fa0039ed1f64534e616c69" target="_blank" rel="noopener noreferrer">Резюме на hh.ru ↗</a><a href="https://github.com/milicaci" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></section>
 </main>
 <footer><span>© 2026 Светлана Алтаравичене</span><span>Аналитика данных · BI · Автоматизация отчётности</span></footer>
 
-<!-- ПОДРОБНЫЕ КАРТОЧКИ: открываются по нажатию на название проекта -->
+<!-- Подробные карточки четырёх проектов -->
 <dialog id="sales-project" aria-labelledby="sales-title">
 <div class="dialog-top"><p>Проект Power BI</p><button type="button" class="dialog-close">Закрыть ×</button></div>
-<dialog id="sales-project" aria-labelledby="sales-title">
-  <div class="dialog-top">
-    <p>Проект Power BI</p>
-    <button type="button" class="dialog-close">Закрыть ×</button>
-  </div>
-
-  <div class="dialog-body">
-    <span class="project-type">Проект по визуализации данных</span>
-
-    <h2 id="sales-title">
-      Визуализация показателей клиентской поддержки — Power BI
-    </h2>
-
-    <p>
-      <strong>Задача бизнеса:</strong> помочь руководителю поддержки
-      оценивать нагрузку по каналам связи, динамику обращений
-      и качество обслуживания.
-    </p>
-
-    <p>
-      <strong>Данные:</strong> сведения об обращениях, продуктах,
-      категориях запросов, каналах связи и ответственных агентах.
-      Источник и период — уточняются.
-    </p>
-
-    <h3>Мой вклад</h3>
-    <ul>
-      <li>Оформила графики и таблицы в Power BI.</li>
-      <li>Настроила фильтры и взаимодействие визуализаций.</li>
-      <li>Представила динамику обращений и сравнение оценок продуктов.</li>
-      <li>Оформила цветовую карту NPS и показатели агентов.</li>
-    </ul>
-
-    <p>
-      <strong>Результат:</strong> интерактивный отчёт, который помогает
-      находить периоды высокой нагрузки, продукты с низкими оценками
-      и направления, требующие внимания руководителя поддержки.
-    </p>
-
-    <h3>Демонстрация</h3>
-    <p>
-      Общий вид дашборда и короткое видео: обзор отчёта,
-      выбор категории обращений и изменение связанных графиков.
-    </p>
-
-    <!-- Скриншот: замените имя файла и уберите комментарий.
-    <div class="project-image">
-      <img
-        src="images/support-dashboard.png"
-        alt="Дашборд показателей клиентской поддержки"
-        loading="lazy"
-      >
-    </div>
-    -->
-
-    <!-- Видео: замените VIDEO_URL и уберите комментарий.
-    <div class="video-links">
-      <a
-        class="btn primary"
-        href="VIDEO_URL"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Смотреть видео ↗
-      </a>
-    </div>
-    -->
-
-    <div class="project-tags">
-      <span class="tag">Power BI</span>
-    </div>
-  </div>
-</dialog>
+<div class="dialog-body"><span class="project-type">Тестовое задание</span><h2 id="sales-title">Анализ продаж и прибыльности — Power BI</h2><p>Динамика продаж, вклад товаров и покупателей, затраты на логистику и убыточные заказы.</p><h3>Моя работа</h3><ul><li>Подготовила данные и настроила связи между таблицами.</li><li>Создала меры выручки, прибыли, рентабельности и затрат на логистику.</li><li>Настроила фильтры и переключение показателей.</li><li>Добавила детализацию: категория → субкатегория → номенклатура.</li><li>Реализовала ABC-анализ товаров.</li></ul><p><strong>Результат:</strong> интерактивный отчёт для анализа показателей по периодам, сегментам покупателей, товарам и регионам.</p><p><strong>Проверка данных:</strong> обнаружены записи, где прибыль превышает выручку, в том числе в исходном файле. Значения сохранены; необходимость уточнения отмечена в описании работы.</p>
+<h3>Демонстрация</h3><div class="video-links"><a href="https://drive.google.com/file/d/1APa4B1cXfJ9QQRjZ7STk3otYLdDhStif/view?usp=sharing" target="_blank" rel="noopener noreferrer">Смотреть видео ↗</a></div><div class="project-tags"><span class="tag">Power BI</span><span class="tag">Power Query</span><span class="tag">DAX</span><span class="tag">Excel</span></div></div></dialog>
+<dialog id="product-project" aria-labelledby="product-title">
 <div class="dialog-top"><p>Проект Power BI</p><button type="button" class="dialog-close">Закрыть ×</button></div>
-<div class="dialog-body"><span class="project-type">Проект</span><h2 id="product-title">Дашборд по товару</h2>
-<p><strong>Задача:</strong> представить данные по товарам в интерактивном отчёте.</p>
-<p><strong>Мой вклад:</strong> сбор и подготовка исходных данных. Визуализации отчёта разработал другой аналитик.</p>
-<p><strong>Демонстрация:</strong> работа с отчётом и детализацией по товару.</p>
+<div class="dialog-body"><span class="project-type">Проект по визуализации данных</span><h2 id="product-title">Визуализация показателей клиентской поддержки — Power BI</h2>
+<p><strong>Задача бизнеса:</strong> представить показатели поддержки в одном отчёте для оценки нагрузки, качества обслуживания и выявления проблемных направлений.</p>
+<p><strong>Данные:</strong> обращения по каналам связи, категориям, продуктам и ответственным агентам. Источник, период и статус данных требуют уточнения перед публикацией.</p>
+<p><strong>Мой вклад:</strong> визуализация показателей в Power BI: графики динамики обращений, сравнение продуктов, таблица агентов и цветовая карта оценок. Разработку расчётов и сбор исходных данных не заявляю.</p>
+<p><strong>Результат:</strong> наглядное представление нагрузки по каналам и периодам, оценок продуктов и показателей обслуживания.</p>
 <h3>Демонстрация</h3>
-<a class="btn primary" href="https://drive.google.com/file/d/19QQvxrLv9xC6IYqugv-X9A36HIeI4ivd/view?usp=sharing" target="_blank" rel="noopener noreferrer">Смотреть видео ↗</a>
+<p>Общий вид отчёта с читаемыми графиками и показателями. Короткое видео — общий обзор, выбор категории обращений и изменение связанных визуализаций.</p>
+<!-- Чтобы добавить скриншот, загрузите images/support-dashboard.png и уберите комментарий вокруг блока:
+<div class="project-image"><img src="images/support-dashboard.png" alt="Общий вид дашборда" loading="lazy"><span class="fallback">Скриншот отчёта</span></div>
+-->
+<div class="video-links"><a class="btn primary" href="https://drive.google.com/file/d/19QQvxrLv9xC6IYqugv-X9A36HIeI4ivd/view?usp=sharing" target="_blank" rel="noopener noreferrer">Смотреть видео ↗</a></div>
 <div class="project-tags"><span class="tag">Power BI</span></div></div></dialog>
 <dialog id="wb-finance-project" aria-labelledby="wb-finance-title">
 <div class="dialog-top"><p>Проект Power BI</p><button type="button" class="dialog-close">Закрыть ×</button></div>
 <div class="dialog-body"><span class="project-type">Финансовая аналитика маркетплейса</span><h2 id="wb-finance-title">Финансовая аналитика Wildberries</h2>
 <p><strong>Задача:</strong> разработать отчёт для собственника бизнеса, позволяющий оценивать выручку, расходы и рентабельность продаж, находить товары с ростом и падением спроса.</p>
-<h3>Моя работа</h3><ul><li>Подключила источники и подготовила данные в Power Query.</li><li>Построила модель данных.</li><li>Создала меры DAX и визуализации.</li><li>Проверила расчёты.</li></ul>
+<h3>Моя работа</h3><p>Подключение источников, подготовка данных в Power Query, построение модели, создание мер DAX и визуализаций, проверка расчётов.</p>
 <p><strong>Источники:</strong> отчёты WB из PostgreSQL; справочники товаров, себестоимости и тарифов из Google-таблиц.</p>
-<h3>Что показывает дашборд</h3><ul><li>Выручку, заказы и комиссию.</li><li>Расходы и рентабельность продаж.</li><li>Динамику спроса по товарам.</li></ul>
-<p><strong>Результат:</strong> отчёт для анализа продаж и расходов, оценки рентабельности и изменений спроса по товарам.</p>
-<!-- Для добавления видео вставьте ниже эту строку, заменив VIDEO_URL ссылкой на ваше видео:
+<h3>Что показывает дашборд</h3><ul><li>Выручку, заказы, комиссию и логистику.</li><li>Валовую прибыль, рентабельность и ROI.</li><li>Динамику показателей и лидеров роста, падения и возвратов.</li><li>Продажи по регионам с фильтрацией по датам и товарам.</li></ul>
+<p><strong>Особенности:</strong> выявлены повторные версии заказов и пропуски себестоимости. Добавлена страница проверки расчётов; при неизвестной себестоимости прибыль и зависимые показатели остаются пустыми.</p>
+<p><strong>Результат:</strong> отчёт для первоначальной оценки финансовых показателей бизнеса с документированными ограничениями данных.</p>
+<h3>Материалы проекта</h3>
+<!-- Чтобы добавить скриншот, загрузите images/wb-finance-dashboard.png и уберите комментарий вокруг блока:
+<div class="project-image"><img src="images/wb-finance-dashboard.png" alt="Общий вид дашборда" loading="lazy"><span class="fallback">Скриншот отчёта</span></div>
+--><!-- Замените VIDEO_URL ссылкой на видео именно этого проекта и уберите комментарий:
 <div class="video-links"><a class="btn primary" href="VIDEO_URL" target="_blank" rel="noopener noreferrer">Смотреть видео ↗</a></div>
 -->
+<!-- Для отдельного описания проекта замените DESCRIPTION_URL и уберите комментарий:
+<div class="video-links"><a href="DESCRIPTION_URL" target="_blank" rel="noopener noreferrer">Описание проекта ↗</a></div>
+-->
 <div class="project-tags"><span class="tag">Power BI</span><span class="tag">Power Query</span><span class="tag">DAX</span><span class="tag">PostgreSQL</span></div></div></dialog>
+<dialog id="marketplace-project" aria-labelledby="marketplace-title">
+<div class="dialog-top"><p>Проект Power BI</p><button type="button" class="dialog-close">Закрыть ×</button></div>
+<div class="dialog-body"><span class="project-type">Командный проект</span><h2 id="marketplace-title">Продажи на маркетплейсах WB и Ozon — Power BI</h2>
+<p><strong>Задача:</strong> анализ заказов, выкупов, выручки, выполнения плана и структуры ассортимента по кабинетам и маркетплейсам.</p>
+<p><strong>Данные:</strong> выгрузки заказов и реализации, планы продаж, справочники товаров и категорий. Данные с января 2024 года.</p>
+<p><strong>Мой вклад:</strong> работала в команде — собирала и подготавливала данные, выполняла ABC-анализ товаров в Google Sheets. Другой аналитик создавал визуализации в Power BI.</p>
+<p><strong>Инструменты:</strong> Python, Google Sheets, Excel; визуализация проекта — Power BI.</p>
+<p><strong>Результат:</strong> отчёт помогает контролировать выполнение плана, сравнивать результаты кабинетов и определять приоритетные товары.</p>
+<h3>Демонстрация</h3><p>Главная страница с ключевыми показателями, динамикой продаж и план-фактом. Видео — обзор отчёта, фильтры по маркетплейсам и кабинетам, выбор периода и переход к ABC-анализу.</p>
+<!-- Чтобы добавить скриншот, загрузите images/marketplace-dashboard.png и уберите комментарий вокруг блока:
+<div class="project-image"><img src="images/marketplace-dashboard.png" alt="Общий вид дашборда" loading="lazy"><span class="fallback">Скриншот отчёта</span></div>
+--><!-- Замените VIDEO_URL ссылкой на видео именно этого проекта и уберите комментарий:
+<div class="video-links"><a class="btn primary" href="VIDEO_URL" target="_blank" rel="noopener noreferrer">Смотреть видео ↗</a></div>
+-->
+<div class="video-links"><a href="https://docs.google.com/spreadsheets/d/1FaQ2iyetW-Ephp1ba9PJHem5Vy-yUUIHwREtUzbq2Zk/edit?gid=2137744191#gid=2137744191" target="_blank" rel="noopener noreferrer">Пример анализа товаров в Google Sheets ↗</a></div>
+<div class="project-tags"><span class="tag">Python</span><span class="tag">Google Sheets</span><span class="tag">Excel</span><span class="tag">Power BI — командная визуализация</span></div></div></dialog>
 
 <script>
 const toggle=document.querySelector('.menu-toggle');
